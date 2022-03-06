@@ -7,10 +7,12 @@ import urllib.parse
 from bs4 import BeautifulSoup
 from pyrogram import Client, filters
 from pyrogram.types import *
+from base64 import standard_b64encode
 
 # wetransfer
 WETRANSFER_API_URL = 'https://wetransfer.com/api/v4/transfers'
 WETRANSFER_DOWNLOAD_URL = WETRANSFER_API_URL + '/{transfer_id}/download'
+BIFM_URL = os.environ.get('BIFM_URL', 'https://bifm.tacohitbox.com/api/bypass?url')
 
 # Bot
 Bot = Client(
@@ -77,6 +79,17 @@ async def reply_shortens(bot, update):
 async def reply_shortens(bot, update):
     url = update.matches[0].group(0)
     ouo = mdisk(url)
+    message = await update.reply_text(
+        text=ouo,
+        disable_web_page_preview=True,
+        quote=True
+    )
+
+@Bot.on_message(filters.command(["bifm"]) & filters.regex(r'https?://[^\s]+'))
+async def reply_shortens(bot, update):
+    x = update.matches[0].group(0)
+    url = encod(x)
+    ouo = bifm(url)
     message = await update.reply_text(
         text=ouo,
         disable_web_page_preview=True,
@@ -233,5 +246,24 @@ def wetransfer(url):
 
     j = r.json()
     return j.get('direct_link')
+
+def encod(__str: str) -> str:
+    str_bytes = __str.encode('ascii')
+    bytes_b64 = standard_b64encode(str_bytes)
+    encoded = bytes_b64.decode('ascii')
+    return encoded
+
+def bifm(url):
+    client = requests.Session()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36"
+    }
+    apix = f"{BIFM_URL}={url}"
+    response = client.get(apix, headers=headers)
+    query = response.json()
+    if "destination" in query:
+        return query["destination"]
+    else:
+        return query["err"]
 
 Bot.run()
