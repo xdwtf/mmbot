@@ -8,3 +8,14 @@
 - `BOT_USERNAME` Your BotuserName Without `@` example `SpamBot`
 - `BIFM_URL` Your [bifm](https://github.com/tacohitbox/bypass-it-for-me) instance Url else Default to `https://bifm.tacohitbox.com/api/bypass?url`
 ---
+
+## BotFather SetCommands
+
+    start - IsThisAlive
+    artstation - Art Station
+    bifm - Bypass It For Meh
+    droplink - Droplink
+    gplink - GpLink
+    mdisk - Mdisk
+    wetransfer - Wetl
+---
