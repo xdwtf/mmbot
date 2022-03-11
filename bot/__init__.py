@@ -27,5 +27,4 @@ class CMD(object):
     DPLK = ["droplink", f"droplink@{handler}"]
     GPLK = ["gplink", f"gplink@{handler}"]
     MDIK = ["mdisk", f"mdisk@{handler}"]
-    OUOK = ["ouo", f"ouo@{handler}"]
     WETR = ["wetransfer", f"wetransfer@{handler}"]
