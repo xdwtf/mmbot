@@ -1,27 +1,17 @@
-name: Linter
+name: flake8 Lint
 
 on: workflow_dispatch
 
 jobs:
-  lint:
+  flake8-lint:
     runs-on: ubuntu-latest
-
+    name: Lint
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: |
-          pip install pycodestyle
-          pip install pylint
-          pip install pylint_runner
-
-      - name: pycodestyle
-        run: |
-          pycodestyle --version
-          pycodestyle . --ignore=E402,E501,W503,W504
-
-      - name: pylint
-        run: |
-          python -m pylint --version
-          pylint_runner --version
-          pylint_runner
+      - name: Check out source repository
+        uses: actions/checkout@v2
+      - name: Set up Python environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2
