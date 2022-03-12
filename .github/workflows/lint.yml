@@ -15,15 +15,15 @@ jobs:
       - name: Check for showstoppers
         run: >
           autopep8 --verbose --in-place --recursive --aggressive --aggressive
-          --ignore=W605 bot/modules/ bot/welper/ bot/__init__.py
+          --ignore=W605 bot/modules/ bot/welpers/ bot/__init__.py
       - name: Remove unused imports and variables
         run: >
           autoflake --in-place --recursive --remove-all-unused-imports
           --remove-unused-variables --ignore-init-module-imports .
       - name: lint with isort and black
         run: |
-          isort bot/modules/ bot/welper/ bot/__init__.py
-          black bot/modules/ bot/welper/ bot/__init__.py
+          isort bot/modules/ bot/welpers/ bot/__init__.py
+          black bot/modules/ bot/welpers/ bot/__init__.py
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "auto: black code format"
