@@ -70,3 +70,26 @@ async def bif(bot, update):
     message = await update.reply_text(
         text=ouo, disable_web_page_preview=True, quote=True
     )
+
+
+def remove_dup(lst):
+    set1 = set()
+    final_list = []
+    for i in lst:
+        set1.add(i)
+        for i in set1:
+            final_list.append(i)
+            return final_list
+
+def ci(bot, update):
+Y = linkGrabber.Links("https://cyberdrop.me/a/3dpi9yIB")
+X = Y.find(href=re.compile(".jpg|.mp4"))
+for i in range(len(X)):
+         C = print(X[i])
+
+for key, values in C.items():
+            if key  == "href":
+                url  =  values
+                url_list.append(url)
+                final_list = remove_dup(url_list)
+    print(final_list)
