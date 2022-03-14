@@ -85,16 +85,16 @@ def remove_dup(lst):
                 if len(final_list) > 4096:
                     filename = "output.txt"
                     with open(filename, "w+", encoding="utf8") as out_file:
-                     out_file.write(str(final_list))
-                message = await update.reply_document(
-                     document=filename,
-                     disable_notification=True,
-                     quote=True
-                )
-                os.remove(filename)
-            else:
-                 message = await update.reply_text(
-                    text=final_list, disable_web_page_preview=True, quote=True)
+                         out_file.write(str(final_list))
+                    message = await update.reply_document(
+                         document=filename,
+                         disable_notification=True,
+                         quote=True
+                    )
+                    os.remove(filename)
+                else:
+                     message = await update.reply_text(
+                        text=final_list, disable_web_page_preview=True, quote=True)
 
 
 @Client.on_message(filters.command(["test"]) & filters.regex(r"https?://[^\s]+"))
