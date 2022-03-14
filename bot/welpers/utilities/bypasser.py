@@ -215,6 +215,7 @@ def xyz(urlx):
   Y = client.get(urlx)
   bs4 = BeautifulSoup(Y.content, "lxml")
   X = bs4.find_all(href = re.compile(".jpg|.mp4"))
+  url_list = []
   for i in range(len(X)):
     dic = X[i]
     for key, values in dic.items():
