@@ -213,6 +213,7 @@ def remove_dup(lst):
     
     
 def xyz(urlx):
+    Xf = await update.edit("`mm ...`")
     user_link = urlx
     links = linkGrabber.Links(user_link)
     grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
@@ -236,3 +237,7 @@ def xyz(urlx):
                          quote=True
                     )
                     os.remove(filename)
+                    await Xf.delete()
+               else:
+                    await Xf.edit(final_list)
+                    
