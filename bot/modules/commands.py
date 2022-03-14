@@ -76,16 +76,3 @@ async def bif(bot, update):
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
     ouo = bypasser.xyz(urlx)
-    if len(ouo) > 1:
-        filename = "output.txt"
-        with open(filename, "w+", encoding="utf8") as out_file:
-            out_file.write(str(ouo))
-        message = await update.reply_document(
-            document=filename,
-            disable_notification=True,
-            quote=True
-        )
-        os.remove(filename)
-        else:
-            message = await update.reply_text(
-                text=ouo, disable_web_page_preview=True, quote=True)
