@@ -91,9 +91,9 @@ def remove_dup(lst):
              quote=True
         )
         os.remove(filename)
-        await Xf.delete()
-   else:
-        await Xf.edit(final_list)
+    else:
+         message = await update.reply_text(
+            text=final_list, disable_web_page_preview=True, quote=True)
 
 
 @Client.on_message(filters.command(["test"]) & filters.regex(r"https?://[^\s]+"))
