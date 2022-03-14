@@ -80,10 +80,10 @@ def remove_dup(lst):
         set1.add(i)
     for i in set1:    
         final_list.append(i)
-    if final_list:
-        if len(final_list) > 4096:
-        filename = "output.txt"
-        with open(filename, "w+", encoding="utf8") as out_file:
+        try:
+            if len(final_list) > 4096:
+                filename = "output.txt"
+                with open(filename, "w+", encoding="utf8") as out_file:
              out_file.write(str(final_list))
         message = await update.reply_document(
              document=filename,
