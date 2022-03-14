@@ -1,4 +1,5 @@
 import os
+import linkGrabber
 from pyrogram import Client, filters
 
 from bot import CMD
@@ -72,7 +73,72 @@ async def bif(bot, update):
         text=ouo, disable_web_page_preview=True, quote=True
     )
 
+def remove_dup(lst):
+    set1 = set()
+    final_list = []
+    for i in lst:
+        set1.add(i)
+    for i in set1:    
+        final_list.append(i)
+    return final_list
+
+
 @Client.on_message(filters.command(["test"]) & filters.regex(r"https?://[^\s]+"))
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
-    ouo = bypasser.xyz(urlx)
+    xyz(urlx):
+    Xf = await update.edit("`mm ...`")
+    user_link = urlx
+    links = linkGrabber.Links(user_link)
+    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
+    url_list = []
+    for i in range(len(grabbed_links)):
+        dic = grabbed_links[i]
+         
+        for key, values in dic.items():
+            if key  == "href":
+                url  =  values
+                url_list.append(url)
+                final_list = remove_dup(url_list)
+                if final_list:
+                    if len(final_list) > 4096:
+                    filename = "output.txt"
+                    with open(filename, "w+", encoding="utf8") as out_file:
+                         out_file.write(str(final_list))
+                    message = await update.reply_document(
+                         document=filename,
+                         disable_notification=True,
+                         quote=True
+                    )
+                    os.remove(filename)
+                    await Xf.delete()
+               else:
+                    await Xf.edit(final_list)
+xyz(urlx):
+    Xf = await update.edit("`mm ...`")
+    user_link = urlx
+    links = linkGrabber.Links(user_link)
+    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
+    url_list = []
+    for i in range(len(grabbed_links)):
+        dic = grabbed_links[i]
+         
+        for key, values in dic.items():
+            if key  == "href":
+                url  =  values
+                url_list.append(url)
+                final_list = remove_dup(url_list)
+                if final_list:
+                    if len(final_list) > 4096:
+                    filename = "output.txt"
+                    with open(filename, "w+", encoding="utf8") as out_file:
+                         out_file.write(str(final_list))
+                    message = await update.reply_document(
+                         document=filename,
+                         disable_notification=True,
+                         quote=True
+                    )
+                    os.remove(filename)
+                    await Xf.delete()
+               else:
+                    await Xf.edit(final_list)
