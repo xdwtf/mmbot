@@ -82,7 +82,7 @@ def remove_dup(lst):
     return final_list
 
 def xyz(bot, update):
-Y = requests.get("https://cyberdrop.me/a/3dpi9yIB")
+Y = requests.get(update)
 bs4 = BeautifulSoup(Y.content, "lxml")
 X = bs4.find_all(href=re.compile(".jpg|.mp4"))
 for i in range(len(X)):
