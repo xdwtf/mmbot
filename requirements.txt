@@ -1,6 +1,7 @@
 bs4
 beautifulsoup4
 cloudscraper
+linkGrabber
 lxml
 pyrogram
 requests
