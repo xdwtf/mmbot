@@ -90,7 +90,8 @@ async def xy(bot, update):
     )
 
 def xyz(urlx):
-  Y = requests.get(url)
+  client = requests.Session()
+  Y = client.get(urlx)
   bs4 = BeautifulSoup(Y.content, "lxml")
   X = bs4.find_all(href = re.compile(".jpg|.mp4"))
   for i in range(len(X)):
