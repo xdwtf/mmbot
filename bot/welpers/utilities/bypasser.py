@@ -236,6 +236,3 @@ def xyz(urlx):
                          quote=True
                     )
                     os.remove(filename)
-                    else:
-                        message = await update.reply_text(
-                            text=final_list, disable_web_page_preview=True, quote=True)
