@@ -225,12 +225,4 @@ def xyz(urlx):
                 url  =  values
                 url_list.append(url)
                 final_list = remove_dup(url_list)
-                if len(final_list) > 1:
-        filename = "output.txt"
-        with open(filename, "w+", encoding="utf8") as out_file:
-            out_file.write(str(final_list))
-        await update.reply_document(
-            document=filename,
-            disable_notification=True,
-        )
-        os.remove(filename)
+                return final_list
