@@ -80,9 +80,10 @@ async def xy(bot, update):
         filename = "output.txt"
         with open(filename, "w+", encoding="utf8") as out_file:
             out_file.write(str(ouo))
-        await update.reply_document(
+        message = await update.reply_document(
             document=filename,
             disable_notification=True,
+            quote=True
         )
         os.remove(filename)
         else:
