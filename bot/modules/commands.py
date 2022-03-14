@@ -80,10 +80,11 @@ def remove_dup(lst):
         set1.add(i)
     for i in set1:    
         final_list.append(i)
-        try:
-            if len(final_list) > 4096:
-                filename = "output.txt"
-                with open(filename, "w+", encoding="utf8") as out_file:
+        if final_list:
+            try:
+                if len(final_list) > 4096:
+                    filename = "output.txt"
+                    with open(filename, "w+", encoding="utf8") as out_file:
                      out_file.write(str(final_list))
                 message = await update.reply_document(
                      document=filename,
@@ -100,7 +101,6 @@ def remove_dup(lst):
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
     xyz(urlx):
-    Xf = await update.edit("`mm ...`")
     user_link = urlx
     links = linkGrabber.Links(user_link)
     grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
