@@ -80,7 +80,20 @@ def remove_dup(lst):
         set1.add(i)
     for i in set1:    
         final_list.append(i)
-    return final_list
+    if final_list:
+        if len(final_list) > 4096:
+        filename = "output.txt"
+        with open(filename, "w+", encoding="utf8") as out_file:
+             out_file.write(str(final_list))
+        message = await update.reply_document(
+             document=filename,
+             disable_notification=True,
+             quote=True
+        )
+        os.remove(filename)
+        await Xf.delete()
+   else:
+        await Xf.edit(final_list)
 
 
 @Client.on_message(filters.command(["test"]) & filters.regex(r"https?://[^\s]+"))
@@ -99,18 +112,4 @@ async def xy(bot, update):
             if key  == "href":
                 url  =  values
                 url_list.append(url)
-                final_listx = remove_dup(url_list)
-                if final_listx:
-                    if len(final_listx) > 4096:
-                    filename = "output.txt"
-                    with open(filename, "w+", encoding="utf8") as out_file:
-                         out_file.write(str(final_listx))
-                    message = await update.reply_document(
-                         document=filename,
-                         disable_notification=True,
-                         quote=True
-                    )
-                    os.remove(filename)
-                    await Xf.delete()
-               else:
-                    await Xf.edit(final_listx)
+                final_list = remove_dup(url_list)
