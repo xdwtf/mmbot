@@ -77,18 +77,20 @@ def remove_dup(lst):
     final_list = []
     for i in lst:
         set1.add(i)
-        for i in set1:
-            final_list.append(i)
-            return final_list
+    for i in set1:    
+        final_list.append(i)
+    return final_list
 
-def ci(bot, update):
-    Y = linkGrabber.Links("https://cyberdrop.me/a/3dpi9yIB")
-    X = Y.find(href=re.compile(".jpg|.mp4")
-               for i in range(len(X)):
-               C = print(X[i])
-               for key, values in C.items():
+def xyz(bot, update):
+Y = requests.get("https://cyberdrop.me/a/3dpi9yIB")
+bs4 = BeautifulSoup(Y.content, "lxml")
+X = bs4.find_all(href=re.compile(".jpg|.mp4"))
+for i in range(len(X)):
+         dic = X[i]
+
+         for key, values in dic.items():
                if key  == "href":
-               url  =  values
-               url_list.append(url)
-               final_list = remove_dup(url_list)
-               print(final_list)
+                    url  =  values
+                    url_list.append(url)
+                    final_list = remove_dup(url_list)
+                    print(final_list)
