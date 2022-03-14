@@ -1,3 +1,4 @@
+import os
 from pyrogram import Client, filters
 
 from bot import CMD
@@ -84,7 +85,6 @@ async def xy(bot, update):
             disable_notification=True,
         )
         os.remove(filename)
-   else:
-       message = await update.reply_text(
-           text=ouo, disable_web_page_preview=True, quote=True
-       )
+        else:
+            message = await update.reply_text(
+                text=ouo, disable_web_page_preview=True, quote=True)
