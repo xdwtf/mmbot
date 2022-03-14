@@ -218,6 +218,8 @@ def xyz(urlx):
   url_list = []
   for i in range(len(X)):
     dic = X[i]
+    
+
     for key, values in dic.items():
       if key == "href":
         url = values
