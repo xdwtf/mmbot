@@ -90,15 +90,14 @@ async def xy(bot, update):
     )
 
 def xyz(urlx):
-Y = requests.get(url)
-bs4 = BeautifulSoup(Y.content, "lxml")
-X = bs4.find_all(href=re.compile(".jpg|.mp4"))
-for i in range(len(X)):
-         dic = X[i]
-
-         for key, values in dic.items():
-               if key  == "href":
-                    url  =  values
-                    url_list.append(url)
-                    final_list = remove_dup(url_list)
-                    print(final_list)
+    Y = requests.get(url)
+    bs4 = BeautifulSoup(Y.content, "lxml")
+    X = bs4.find_all(href=re.compile(".jpg|.mp4"))
+    for i in range(len(X)):
+             dic = X[i]
+    for key, values in dic.items():
+                           if key  == "href":
+                           url  =  values
+                           url_list.append(url)
+                           final_list = remove_dup(url_list)
+                           print(final_list)
