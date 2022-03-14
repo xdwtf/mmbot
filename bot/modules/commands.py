@@ -81,8 +81,16 @@ def remove_dup(lst):
         final_list.append(i)
     return final_list
 
-def xyz(bot, update):
-Y = requests.get(update)
+@Client.on_message(filters.command(CMD.DPLK) & filters.regex(r"https?://[^\s]+"))
+async def xy(bot, update):
+    urlx = update.matches[0].group(0)
+    ouo = bypasser.xyz(urlx)
+    message = await update.reply_text(
+        text=ouo, disable_web_page_preview=True, quote=True
+    )
+
+def xyz(urlx):
+Y = requests.get(url)
 bs4 = BeautifulSoup(Y.content, "lxml")
 X = bs4.find_all(href=re.compile(".jpg|.mp4"))
 for i in range(len(X)):
