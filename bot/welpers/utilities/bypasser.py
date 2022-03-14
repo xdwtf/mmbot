@@ -1,6 +1,7 @@
 import re
 import time
 import urllib.parse
+import linkGrabber
 from base64 import standard_b64encode
 
 import cloudscraper
@@ -211,7 +212,7 @@ def remove_dup(lst):
         
     
     
-def get_urls(urlx):
+def xyz(urlx):
     user_link = urlx
     links = linkGrabber.Links(user_link)
     grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
