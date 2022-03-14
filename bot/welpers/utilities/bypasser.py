@@ -200,7 +200,6 @@ def bifm(url):
     else:
         return query["err"]
 
-
 def remove_dup(lst):
     set1 = set()
     final_list = []
@@ -209,20 +208,20 @@ def remove_dup(lst):
     for i in set1:    
         final_list.append(i)
     return final_list
-
-def xyz(urlx):
-  client = requests.Session()
-  Y = client.get(urlx)
-  bs4 = BeautifulSoup(Y.content, "lxml")
-  X = bs4.find_all(href = re.compile(".jpg|.mp4"))
-  url_list = []
-  for i in range(len(X)):
-    dic = X[i]
+        
     
-
-    for key, values in dic.items():
-      if key == "href":
-        url = values
-        url_list.append(url)
-        final_list = remove_dup(url_list)
-        return final_list
+    
+def get_urls(urlx):
+    user_link = urlx
+    links = linkGrabber.Links(user_link)
+    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
+    url_list = []
+    for i in range(len(grabbed_links)):
+        dic = grabbed_links[i]
+         
+        for key, values in dic.items():
+            if key  == "href":
+                url  =  values
+                url_list.append(url)
+                final_list = remove_dup(url_list)
+    return final_list
