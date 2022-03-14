@@ -81,7 +81,7 @@ def remove_dup(lst):
         final_list.append(i)
     return final_list
 
-@Client.on_message(filters.command(CMD.DPLK) & filters.regex(r"https?://[^\s]+"))
+@Client.on_message(filters.command(["test"]) & filters.regex(r"https?://[^\s]+"))
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
     ouo = xyz(urlx)
