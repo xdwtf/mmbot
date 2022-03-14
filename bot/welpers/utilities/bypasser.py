@@ -226,7 +226,7 @@ def xyz(urlx):
                 url_list.append(url)
                 final_list = remove_dup(url_list)
                 if final_list:
-                    if len(final_list) > 1:
+                    if len(final_list) > 4096:
                     filename = "output.txt"
                     with open(filename, "w+", encoding="utf8") as out_file:
                          out_file.write(str(final_list))
@@ -238,4 +238,4 @@ def xyz(urlx):
                     os.remove(filename)
                     else:
                         message = await update.reply_text(
-                            text=ouo, disable_web_page_preview=True, quote=True)
+                            text=final_list, disable_web_page_preview=True, quote=True)
