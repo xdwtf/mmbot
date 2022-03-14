@@ -100,4 +100,4 @@ def xyz(urlx):
         url = values
         url_list.append(url)
         final_list = remove_dup(url_list)
-        print(final_list)
+        return final_list
