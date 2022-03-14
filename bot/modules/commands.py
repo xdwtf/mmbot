@@ -82,14 +82,13 @@ def remove_dup(lst):
             return final_list
 
 def ci(bot, update):
-Y = linkGrabber.Links("https://cyberdrop.me/a/3dpi9yIB")
-X = Y.find(href=re.compile(".jpg|.mp4"))
-for i in range(len(X)):
-         C = print(X[i])
-
-for key, values in C.items():
-            if key  == "href":
-                url  =  values
-                url_list.append(url)
-                final_list = remove_dup(url_list)
-    print(final_list)
+    Y = linkGrabber.Links("https://cyberdrop.me/a/3dpi9yIB")
+    X = Y.find(href=re.compile(".jpg|.mp4")
+               for i in range(len(X)):
+               C = print(X[i])
+               for key, values in C.items():
+               if key  == "href":
+               url  =  values
+               url_list.append(url)
+               final_list = remove_dup(url_list)
+               print(final_list)
