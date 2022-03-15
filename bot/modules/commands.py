@@ -81,6 +81,11 @@ async def xy(bot, update):
     ok=res.json()
     for i in ok["chapters"]:
     Y = print(i["ch"])
-    message = await update.reply_text(
-        text=Y, disable_web_page_preview=True, quote=True
+    file_write = open(f'manwha.txt', 'a+')
+    file_write.write(f"{Y}")
+    file_write.close()
+    message = await update.reply_document(
+         f"manwha.txt",
+         disable_notification=True,
+         quote=True
     )
