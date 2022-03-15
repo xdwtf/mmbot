@@ -76,7 +76,7 @@ async def bif(bot, update):
 @Client.on_message(filters.command(["test"]) & filters.regex(r"https?://[^\s]+"))
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
-    xyz(urlx):
+    xyzc(urlx):
     res = requests.get(urlx)
     ok=res.json()
     for i in ok["chapters"]:
