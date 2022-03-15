@@ -1,21 +1,28 @@
-on: workflow_dispatch
-name: lint_python
+name: Formatting python code
+on:
+  workflow_dispatch:
+    paths:
+    - '**.py'
 jobs:
-  lint_python:
+  autoyapf:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - run: pip install bandit black codespell flake8 isort mypy pytest pyupgrade safety
-      - run: bandit --recursive --skip B101 . || true  # B101 is assert statements
-      - run: black --check . || true
-      - run: codespell || true  # --ignore-words-list="" --skip=""
-      - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-      - run: flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --show-source --statistics
-      - run: isort --check-only --profile black . || true
-      - run: pip install -r requirements.txt || true
-      - run: mypy --install-types --non-interactive . || true
-      - run: pytest . || true
-      - run: pytest --doctest-modules . || true
-      - run: shopt -s globstar && pyupgrade --py36-plus **/*.py || true
-      - run: safety check
+      - uses: actions/checkout@master
+        with:
+          ref: ${{ github.head_ref }}
+      - name: autoyapf
+        id: autoyapf
+        uses: mritunjaysharma394/autoyapf@v2
+        with:
+          args: --style pep8 --recursive --in-place .
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+      - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'github-actions' 
+          git config --global user.email 'github-actions@github.com' 
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Automated autoyapf fixes"
+          git push
