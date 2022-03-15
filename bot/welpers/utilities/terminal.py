@@ -2,6 +2,7 @@ import asyncio
 
 
 class Terminal:
+
     def __init__(self, process: asyncio.subprocess.Process) -> None:
         self._process = process
         self._stdout = b""
@@ -51,8 +52,9 @@ class Terminal:
     @classmethod
     async def execute(cls, cmd: str) -> "Term":
         process = await asyncio.create_subprocess_shell(
-            cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-        )
+            cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE)
         t_obj = cls(process)
         asyncio.get_event_loop().create_task(t_obj.worker())
         return t_obj

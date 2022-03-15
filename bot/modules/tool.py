@@ -94,10 +94,8 @@ async def eval(bot, update):
         evaluation = "Success"
 
     final_output = (
-        "<b>EVAL</b>: <code>{}</code>\n\n<b>OUTPUT</b>:\n<code>{}</code> \n".format(
-            cmd, evaluation.strip()
-        )
-    )
+        "<b>EVAL</b>: <code>{}</code>\n\n<b>OUTPUT</b>:\n<code>{}</code> \n".
+        format(cmd, evaluation.strip()))
 
     if len(final_output) > Config.MAX_MESSAGE_LENGTH:
         OUTPUT = clear_string(OUTPUT)
@@ -115,8 +113,6 @@ async def eval(bot, update):
 
 
 async def aexec(code, bot, update):
-    exec(
-        f"async def __aexec(bot, update): "
-        + "".join(f"\n {l}" for l in code.split("\n"))
-    )
+    exec(f"async def __aexec(bot, update): " +
+         "".join(f"\n {l}" for l in code.split("\n")))
     return await locals()["__aexec"](bot, update)
