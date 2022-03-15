@@ -229,16 +229,16 @@ def xyz(urlx):
                 final_list = remove_dup(url_list)
                 if final_list:
                     if len(final_list) > 4096:
-                    filename = "output.txt"
-                    with open(filename, "w+", encoding="utf8") as out_file:
-                         out_file.write(str(final_list))
-                    message = await update.reply_document(
-                         document=filename,
-                         disable_notification=True,
-                         quote=True
-                    )
-                    os.remove(filename)
-                    await Xf.delete()
-               else:
-                    await Xf.edit(final_list)
+                        filename = "output.txt"
+                        with open(filename, "w+", encoding="utf8") as out_file:
+                            out_file.write(str(final_list))
+                            message = await update.reply_document(
+                                document=filename,
+                                disable_notification=True,
+                                quote=True
+                           )
+                           os.remove(filename)
+                           await Xf.delete()
+                      else:
+                           await Xf.edit(final_list)
                     
