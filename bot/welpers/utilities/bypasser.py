@@ -237,8 +237,8 @@ def xyz(urlx):
                                 disable_notification=True,
                                 quote=True
                            )
-                           os.remove(filename)
-                           await Xf.delete()
-                      else:
-                           await Xf.edit(final_list)
+                            os.remove(filename)
+                            await Xf.delete()
+                       else:
+                            await Xf.edit(final_list)
                     
