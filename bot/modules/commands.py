@@ -77,3 +77,10 @@ async def bif(bot, update):
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
     xyz(urlx):
+    res = requests.get(urlx)
+    ok=res.json()
+    for i in ok["chapters"]:
+    Y = print(i["ch"])
+    message = await update.reply_text(
+        text=Y, disable_web_page_preview=True, quote=True
+    )
