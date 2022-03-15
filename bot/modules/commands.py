@@ -82,7 +82,7 @@ def remove_dup(lst):
         final_list.append(i)
         if final_list:
             try:
-                if len(final_list) > 96:
+                if len(final_list) > 4096:
                     file_write = open(f'cyberdrop.txt', 'a+')
                     file_write.write(f"{final_list}")
                     file_write.close()
@@ -112,12 +112,4 @@ async def xy(bot, update):
             if key  == "href":
                 url  =  values
                 url_list.append(url)
-                file_write = open(f'cyberdrop.txt', 'a+')
-                file_write.write(f"{url_list}")
-                file_write.close()
-                message = await update.reply_document(
-                     f"cyberdrop.txt",
-                     disable_notification=True,
-                     quote=True
-                )
-                os.remove(f"cyberdrop.txt")
+                final_list = remove_dup(url_list)
