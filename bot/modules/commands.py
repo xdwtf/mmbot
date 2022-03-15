@@ -82,7 +82,7 @@ def remove_dup(lst):
         final_list.append(i)
         if final_list:
             try:
-                if len(final_list) > 4096:
+                if len(final_list) > 96:
                     file_write = open(f'cyberdrop.txt', 'a+')
                     file_write.write(f"{final_list}")
                     file_write.close()
