@@ -73,6 +73,27 @@ async def bif(bot, update):
         text=ouo, disable_web_page_preview=True, quote=True
     )
 
+@Client.on_message(
+    filters.command(["test"])
+    & filters.regex(r"https?://[^\s]+")
+)
+async def xy(bot, update):
+    urlx = update.matches[0].group(0)
+    xyz(urlx):
+    user_link = urlx
+    links = linkGrabber.Links(user_link)
+    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
+    url_list = []
+    for i in range(len(grabbed_links)):
+        dic = grabbed_links[i]
+         
+        for key, values in dic.items():
+            if key  == "href":
+                url  =  values
+                url_list.append(url)
+                final_list = remove_dup(url_list)
+
+
 def remove_dup(lst):
     set1 = set()
     final_list = []
@@ -95,24 +116,3 @@ def remove_dup(lst):
                 else:
                      message = await update.reply_text(
                         text=final_list, disable_web_page_preview=True, quote=True)
-
-
-@Client.on_message(
-    filters.command(["test"])
-    & filters.regex(r"https?://[^\s]+")
-)
-async def xy(bot, update):
-    urlx = update.matches[0].group(0)
-    xyz(urlx):
-    user_link = urlx
-    links = linkGrabber.Links(user_link)
-    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
-    url_list = []
-    for i in range(len(grabbed_links)):
-        dic = grabbed_links[i]
-         
-        for key, values in dic.items():
-            if key  == "href":
-                url  =  values
-                url_list.append(url)
-                final_list = remove_dup(url_list)
