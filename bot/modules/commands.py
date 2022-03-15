@@ -80,7 +80,7 @@ async def xy(bot, update):
     res = requests.get(urlx)
     ok=res.json()
     for i in ok["chapters"]:
-    Y = print(i["ch"])
+    Y = (i["ch"])
     file_write = open(f'manwha.txt', 'a+')
     file_write.write(f"{Y}")
     file_write.close()
