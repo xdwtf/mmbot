@@ -3,6 +3,9 @@ import time
 import urllib.parse
 from base64 import standard_b64encode
 
+import linkGrabber
+import os
+
 import cloudscraper
 import requests
 from bs4 import BeautifulSoup
@@ -199,3 +202,41 @@ def bifm(url):
         return query["destination"]
     else:
         return query["err"]
+
+def xyz(urlx):
+    user_link = urlx
+    links = linkGrabber.Links(user_link)
+    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
+    url_list = []
+    for i in range(len(grabbed_links)):
+        dic = grabbed_links[i]
+         
+        for key, values in dic.items():
+            if key  == "href":
+                url  =  values
+                url_list.append(url)
+                final_list = remove_dup(url_list)
+
+
+def remove_dup(lst):
+    set1 = set()
+    final_list = []
+    for i in lst:
+        set1.add(i)
+    for i in set1:    
+        final_list.append(i)
+        if final_list:
+            try:
+                if len(final_list) > 4096:
+                    file_write = open(f'cyberdrop.txt', 'a+')
+                    file_write.write(f"{final_list}")
+                    file_write.close()
+                    message = await update.reply_document(
+                         f"cyberdrop.txt",
+                         disable_notification=True,
+                         quote=True
+                    )
+                    os.remove(f"cyberdrop.txt")
+                else:
+                     message = await update.reply_text(
+                        text=final_list, disable_web_page_preview=True, quote=True)
