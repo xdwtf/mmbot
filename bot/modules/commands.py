@@ -80,18 +80,18 @@ async def bif(bot, update):
 async def xy(bot, update):
     urlx = update.matches[0].group(0)
     xyz(urlx):
-    user_link = urlx
-    links = linkGrabber.Links(user_link)
-    grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
-    url_list = []
-    for i in range(len(grabbed_links)):
-        dic = grabbed_links[i]
+      user_link = urlx
+      links = linkGrabber.Links(user_link)
+      grabbed_links = links.find(href=re.compile(".jpg|.mp4"))
+      url_list = []
+      for i in range(len(grabbed_links)):
+          dic = grabbed_links[i]
          
-        for key, values in dic.items():
-            if key  == "href":
-                url  =  values
-                url_list.append(url)
-                final_list = remove_dup(url_list)
+          for key, values in dic.items():
+              if key  == "href":
+                  url  =  values
+                  url_list.append(url)
+                  final_list = remove_dup(url_list)
 
 
 def remove_dup(lst):
