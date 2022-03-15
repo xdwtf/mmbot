@@ -83,15 +83,15 @@ def remove_dup(lst):
         if final_list:
             try:
                 if len(final_list) > 4096:
-                    filename = "output.txt"
-                    with open(filename, "w+", encoding="utf8") as out_file:
-                         out_file.write(str(final_list))
+                    file_write = open(f'cyberdrop.txt', 'a+')
+                    file_write.write(f"{final_list}")
+                    file_write.close()
                     message = await update.reply_document(
-                         document=filename,
+                         f"cyberdrop.txt",
                          disable_notification=True,
                          quote=True
                     )
-                    os.remove(filename)
+                    os.remove(f"cyberdrop.txt")
                 else:
                      message = await update.reply_text(
                         text=final_list, disable_web_page_preview=True, quote=True)
